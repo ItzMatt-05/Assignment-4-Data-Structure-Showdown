@@ -13,8 +13,16 @@ Output: False
 """
 
 def has_duplicates(product_ids):
-    # Your implementation here
-    pass
+    seen=set()
+    for pid in product_ids:
+        if pid in seen:
+            return True
+        seen.add(pid)
+    return False
+print(has_duplicates([10, 20, 30, 20, 40])) #T
+print(has_duplicates([1, 2, 3, 4, 5])) #F
+    # A set works best since it gives fast 0(1) membership checks and solves in 0(n).
+
 
 
 """
@@ -29,18 +37,26 @@ task_queue.add_task("Email follow-up")
 task_queue.add_task("Code review")
 task_queue.remove_oldest_task() → "Email follow-up"
 """
+from collections import deque
 
 class TaskQueue:
     def __init__(self):
-        # Your initialization here
-        pass
-
+        self.queue=deque()
+        
     def add_task(self, task):
-        pass
+        self.queue.append(task)
+        
 
     def remove_oldest_task(self):
-        pass
-
+        if self.queue:
+            return self.queue.popleft()
+        return None
+task_queue = TaskQueue()
+task_queue.add_task("Email follow-up")
+task_queue.add_task("Code review")
+print(task_queue.remove_oldest_task()) #Email follow up
+print(task_queue.remove_oldest_task()) #Code review
+# A queue makes more sense here because the tasks need to be removed the same way they are added like FIFO.
 
 """
 Problem 3: Unique Value Counter
@@ -57,10 +73,18 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        pass
+        self.values=set()
+        
 
     def add(self, value):
-        pass
+        self.values.add(value)
+        
 
     def get_unique_count(self):
-        pass
+        return len(self.values)
+tracker = UniqueTracker()
+tracker.add(10)
+tracker.add(20)
+tracker.add(10)
+print(tracker.get_unique_count()) #2       
+# Tracking the unique items is best done with len().
