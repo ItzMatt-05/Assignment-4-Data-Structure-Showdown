@@ -21,7 +21,7 @@ def has_duplicates(product_ids):
     return False
 print(has_duplicates([10, 20, 30, 20, 40])) #T
 print(has_duplicates([1, 2, 3, 4, 5])) #F
-    # A set works best since it gives fast 0(1) membership checks and solves in 0(n).
+    # Sets was the right move here since it is ideal to use when not necessarily worrying about order. It is also faster.
 
 
 
@@ -56,7 +56,7 @@ task_queue.add_task("Email follow-up")
 task_queue.add_task("Code review")
 print(task_queue.remove_oldest_task()) #Email follow up
 print(task_queue.remove_oldest_task()) #Code review
-# A queue makes more sense here because the tasks need to be removed the same way they are added like FIFO.
+# A queue makes more sense here because the tasks need to be removed the same way they are added like FIFO. 
 
 """
 Problem 3: Unique Value Counter
@@ -87,4 +87,4 @@ tracker.add(10)
 tracker.add(20)
 tracker.add(10)
 print(tracker.get_unique_count()) #2       
-# Tracking the unique items is best done with len().
+# Tracking the unique items efficiently is best done using sets.
